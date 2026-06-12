@@ -16,9 +16,7 @@ let dataCache = null;
 let lastFetchTime = 0;
 const CACHE_TTL_MS = 60 * 1000; 
 
-// Gemini Setup
-const API_KEY = process.env.GEMINI_API_KEY;
-const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
+// No global genAI initialization
 
 app.get('/api/data', async (req, res) => {
     try {
@@ -53,9 +51,13 @@ app.get('/api/data', async (req, res) => {
 
 // Chatbot Endpoint
 app.post('/api/chat', async (req, res) => {
-    if (!genAI) {
-        return res.status(503).json({ error: 'Gemini API Key no configurada en el servidor.' });
+    const API_KEY = process.env.GEMINI_API_KEY;
+    
+    if (!API_KEY) {
+        return res.status(503).json({ error: 'Gemini API Key no configurada en el servidor. Revisa las variables en Railway.' });
     }
+    
+    const genAI = new GoogleGenerativeAI(API_KEY);
     
     const { message } = req.body;
     if (!message) {
