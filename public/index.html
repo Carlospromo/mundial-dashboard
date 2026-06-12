@@ -112,6 +112,23 @@
                     </div>
                     <div id="questionsDetails" class="voters-details"></div>
                 </div>
+
+                <!-- AI Chatbot Section -->
+                <div class="card glass-panel section-card chat-card">
+                    <div class="section-header">
+                        <h3>🤖 IA de la Porra (Gemini)</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 5px;">Pregúntame cualquier cosa sobre los datos y predicciones de los participantes.</p>
+                    </div>
+                    <div class="chat-window" id="chatWindow">
+                        <div class="message ai-message">
+                            ¡Hola! Soy la IA analista de la porra. Pregúntame sobre los pronósticos, quién votó qué o estadísticas locas del torneo.
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="Ej: ¿Quién es el favorito indiscutible del Grupo C?" autocomplete="off" />
+                        <button id="chatSendBtn">Enviar</button>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

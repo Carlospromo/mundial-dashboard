@@ -227,3 +227,62 @@ function renderVotersDetails(detailsId, freqData) {
         detailsEl.appendChild(block);
     });
 }
+
+// --- Chatbot Logic ---
+document.addEventListener('DOMContentLoaded', () => {
+    const chatInput = document.getElementById('chatInput');
+    const chatSendBtn = document.getElementById('chatSendBtn');
+    
+    if (chatInput && chatSendBtn) {
+        chatSendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    }
+});
+
+async function sendMessage() {
+    const inputEl = document.getElementById('chatInput');
+    const message = inputEl.value.trim();
+    if (!message) return;
+
+    appendMessage('user', message);
+    inputEl.value = '';
+    
+    const loadingId = appendMessage('ai', 'Pensando...');
+
+    try {
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message })
+        });
+        
+        const data = await response.json();
+        const loadingEl = document.getElementById(loadingId);
+        
+        if (response.ok) {
+            loadingEl.innerText = data.reply;
+        } else {
+            loadingEl.innerText = '❌ ' + (data.error || 'Error desconocido.');
+        }
+    } catch (err) {
+        document.getElementById(loadingId).innerText = '❌ No se pudo conectar con el servidor.';
+    }
+}
+
+function appendMessage(sender, text) {
+    const windowEl = document.getElementById('chatWindow');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${sender}-message`;
+    msgDiv.innerText = text;
+    
+    // Generate a random ID for loading messages
+    const id = 'msg-' + Date.now();
+    msgDiv.id = id;
+    
+    windowEl.appendChild(msgDiv);
+    windowEl.scrollTop = windowEl.scrollHeight;
+    
+    return id;
+}
