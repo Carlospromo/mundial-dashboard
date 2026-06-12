@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mundial 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="container">
+        <header class="glass-panel">
+            <h1>🏆 Porra Mundial 2026</h1>
+            <p>Estadísticas y predicciones en tiempo real</p>
+        </header>
+
+        <main>
+            <div class="top-cards">
+                <div class="card glass-panel kpi-card">
+                    <h3>Participantes Totales</h3>
+                    <div class="kpi-value" id="kpi-participants">--</div>
+                </div>
+                <div class="card glass-panel list-card">
+                    <h3>Últimos Fichajes</h3>
+                    <ul id="latest-participants" class="participant-list">
+                        <li>Cargando...</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="card glass-panel">
+                    <h3>Favorito para Ganar el Mundial</h3>
+                    <div class="chart-container">
+                        <canvas id="winnerChart"></canvas>
+                    </div>
+                    <div id="winnerDetails" class="voters-details"></div>
+                </div>
+
+                <div class="card glass-panel">
+                    <h3>Bota de Oro del Torneo</h3>
+                    <div class="chart-container">
+                        <canvas id="goldenBootChart"></canvas>
+                    </div>
+                    <div id="goldenBootDetails" class="voters-details"></div>
+                </div>
+
+                <div class="card glass-panel full-width">
+                    <h3>Pichichi de La Roja</h3>
+                    <div class="chart-container">
+                        <canvas id="spainScorerChart"></canvas>
+                    </div>
+                    <div id="spainScorerDetails" class="voters-details"></div>
+                </div>
+            </div>
+
+            <div class="dynamic-sections">
+                <div class="card glass-panel section-card">
+                    <div class="section-header">
+                        <h3>Fase de Grupos y Partidazos</h3>
+                        <select id="groupMatchesSelect" class="glass-select">
+                            <option value="">Selecciona un partido...</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="groupMatchesChart"></canvas>
+                    </div>
+                    <div id="groupMatchesDetails" class="voters-details"></div>
+                </div>
+
+                <div class="card glass-panel section-card">
+                    <div class="section-header">
+                        <h3>Clasificación de Grupos</h3>
+                        <select id="groupStandingsSelect" class="glass-select">
+                            <option value="">Selecciona un grupo/posición...</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="groupStandingsChart"></canvas>
+                    </div>
+                    <div id="groupStandingsDetails" class="voters-details"></div>
+                </div>
+
+                <div class="card glass-panel section-card">
+                    <div class="section-header">
+                        <h3>Cruces de Fase Final</h3>
+                        <select id="knockoutSelect" class="glass-select">
+                            <option value="">Selecciona una eliminatoria...</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="knockoutChart"></canvas>
+                    </div>
+                    <div id="knockoutDetails" class="voters-details"></div>
+                </div>
+
+                <div class="card glass-panel section-card">
+                    <div class="section-header">
+                        <h3>Preguntas Extra (Q1 - Q48)</h3>
+                        <select id="questionsSelect" class="glass-select">
+                            <option value="">Selecciona una pregunta...</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="questionsChart"></canvas>
+                    </div>
+                    <div id="questionsDetails" class="voters-details"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
