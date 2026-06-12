@@ -69,7 +69,7 @@ app.post('/api/chat', async (req, res) => {
     }
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const model = genAI.getGenerativeModel({ model: "gemini-3.5-flash" });
         
         // Convert array to a concise format to save tokens. We can convert to CSV text.
         const csvData = Papa.unparse(dataCache);
