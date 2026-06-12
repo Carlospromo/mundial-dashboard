@@ -91,7 +91,7 @@ Pregunta del usuario: ${message}
         res.json({ reply: responseText });
     } catch (error) {
         console.error('Error in Gemini API:', error);
-        res.status(500).json({ error: 'Hubo un error al procesar tu solicitud con la IA.' });
+        res.status(500).json({ error: 'Fallo en la IA: ' + (error.message || 'Error desconocido') });
     }
 });
 
